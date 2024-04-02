@@ -6,6 +6,6 @@ def allsobitiya():
 
     for a in s:
         if a.type == pygame.KEYDOWN and a.key == pygame.K_q:
-            model.visibility = True
+            model.visibility = not model.visibility
         if a.type == pygame.QUIT:
             exit()
