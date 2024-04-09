@@ -3,6 +3,6 @@
 import time,view,controller
 
 while True:
-    view.visible_cota()
+    view.visible_predmetov()
     controller.allsobitiya()
     time.sleep(1/100)
