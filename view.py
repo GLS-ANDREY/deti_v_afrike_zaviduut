@@ -9,14 +9,20 @@ transform_bucket = pygame.transform.scale(bucket, [model.rect_bucket.width, mode
 
 
 def visible_predmetov():
+    display.fill([0, 0, 0])
     if model.visibility == True:
         pygame.draw.rect(display, [255, 0, 9], model.rect_cot, 3)
         pygame.draw.rect(display, [64, 150, 193], model.rect_umbrella, 3)
         pygame.draw.rect(display, [73, 156, 73], model.rect_bucket, 3)
-        pygame.display.flip()
     if model.visibility == False:
-        display.fill([0, 0, 0])
         display.blit(cat1, model.rect_cot)
         display.blit(transform_umbrella, model.rect_umbrella)
         display.blit(transform_bucket, model.rect_bucket)
+    if model.perevorot == False:
+        perevernutiy_kot = pygame.transform.flip(cat1,True,False)
+        display.blit(perevernutiy_kot, model.rect_cot)
         pygame.display.flip()
+    if model.perevorot == True:
+        perevernutiy_kot = pygame.transform.flip(cat1,True,False)
+        display.blit(perevernutiy_kot, model.rect_cot)
+    pygame.display.flip()
