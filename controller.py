@@ -1,4 +1,4 @@
-import pygame, model, random
+import pygame, model
 
 pygame.key.set_repeat(100)
 
@@ -6,9 +6,10 @@ def allsobitiya():
     s = pygame.event.get()
 
     for a in s:
-        if a.type == pygame.KEYDOWN and a.key == pygame.K_SPACE:
+        if a.type == pygame.KEYUP and a.key == pygame.K_SPACE:
             model.perevorot = not model.perevorot
-        if a.type == pygame.KEYDOWN and a.key == pygame.K_q:
+            model.perevernutie_predmeti()
+        if a.type == pygame.KEYUP and a.key == pygame.K_q:
             model.visibility = not model.visibility
         if a.type == pygame.KEYDOWN and a.key == pygame.K_RIGHT:
             model.kot_xodit_vpravo()
