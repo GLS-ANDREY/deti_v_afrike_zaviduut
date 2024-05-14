@@ -3,6 +3,7 @@ import pygame
 rect_cot = pygame.Rect(500, 874, 167, 126)
 rect_umbrella = pygame.Rect(585, 775, 125, 125)
 rect_bucket = pygame.Rect(485, 855, 60, 60)
+rect_tuchka = pygame.Rect(50,50,150,120)
 visibility = False
 perevorot = False  # True - vpravo, False - vlevo
 
