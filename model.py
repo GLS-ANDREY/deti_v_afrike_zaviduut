@@ -6,15 +6,24 @@ rect_bucket = pygame.Rect(485, 855, 60, 60)
 rect_tuchka = pygame.Rect(50,50,150,120)
 visibility = False
 perevorot = False  # True - vpravo, False - vlevo
+speed_x = 5
 
 
-def kot_pravo():
+def tuchka():
+    global speed_x
+    rect_tuchka.centerx += speed_x
+    if rect_tuchka.right >= 1000:
+        speed_x = -speed_x
+    if rect_tuchka.left <= 0:
+        speed_x = -speed_x
+
+def pravo():
     global perevorot
     perevorot = True
     # перемещение предметов
     rect_cot.x += 20
     rect_umbrella.x += 20
-    rect_bucket.x += 20
+    rect_bucket.x += 20.0
     # граница
     if rect_bucket.x >= 940:
         rect_cot.x = 818
@@ -26,8 +35,7 @@ def kot_pravo():
     if rect_cot.x >= rect_bucket.x:
         rect_cot.x -= 140
 
-
-def kot_levo():
+def levo():
     global perevorot
     perevorot = False
     # перемещение предметов

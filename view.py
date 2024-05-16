@@ -16,14 +16,18 @@ perevernutoe_umbrella = pygame.transform.flip(transform_umbrella, True, False)
 def risovanie():
     display.fill([0, 0, 0])
     display.blit(transform_tuchka, model.rect_tuchka)
+    #Ректы
     if model.visibility == True:
         pygame.draw.rect(display, [255, 0, 9], model.rect_cot, 3)
         pygame.draw.rect(display, [64, 150, 193], model.rect_umbrella, 3)
         pygame.draw.rect(display, [73, 156, 73], model.rect_bucket, 3)
+        pygame.draw.rect(display, [240, 167, 50], model.rect_tuchka, 3)
+    #Фигурки лево
     if model.perevorot == False:
         display.blit(cat1, model.rect_cot)
         display.blit(transform_umbrella, model.rect_umbrella)
         display.blit(transform_bucket, model.rect_bucket)
+    #Фигурки право
     if model.perevorot == True:
         display.blit(perevernutiy_kot, model.rect_cot)
         display.blit(perevernutoe_umbrella, model.rect_umbrella)

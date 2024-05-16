@@ -7,9 +7,9 @@ def allsobitiya():
 
     for a in s:
         if a.type == pygame.KEYDOWN and a.key == pygame.K_RIGHT:
-            model.kot_pravo()
+            model.pravo()
         if a.type == pygame.KEYDOWN and a.key == pygame.K_LEFT:
-            model.kot_levo()
+            model.levo()
         if a.type == pygame.KEYUP and a.key == pygame.K_q:
             model.visibility = not model.visibility
         if a.type == pygame.QUIT:
