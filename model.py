@@ -3,27 +3,39 @@ import pygame
 rect_cot = pygame.Rect(500, 874, 167, 126)
 rect_umbrella = pygame.Rect(585, 775, 125, 125)
 rect_bucket = pygame.Rect(485, 855, 60, 60)
-rect_tuchka = pygame.Rect(50,50,150,120)
+rect_tuchka = pygame.Rect(50, 50, 150, 120)
+rect_kaplu = pygame.Rect(rect_tuchka.x,rect_tuchka.y, 40, 40)
 visibility = False
 perevorot = False  # True - vpravo, False - vlevo
-speed_x = 5
+speed_x_tuchka = 5
+speed_y_kaplu = 7
+
+
+def zapusk():
+    kaplu()
+    tuchka()
+
+
+def kaplu():
+    rect_kaplu.centery += speed_y_kaplu
 
 
 def tuchka():
-    global speed_x
-    rect_tuchka.centerx += speed_x
+    global speed_x_tuchka
+    rect_tuchka.centerx += speed_x_tuchka
     if rect_tuchka.right >= 1000:
-        speed_x = -speed_x
+        speed_x_tuchka = -speed_x_tuchka
     if rect_tuchka.left <= 0:
-        speed_x = -speed_x
+        speed_x_tuchka = -speed_x_tuchka
+
 
 def pravo():
     global perevorot
     perevorot = True
     # перемещение предметов
-    rect_cot.x += 20
-    rect_umbrella.x += 20
-    rect_bucket.x += 20.0
+    rect_cot.x += 35
+    rect_umbrella.x += 35
+    rect_bucket.x += 35
     # граница
     if rect_bucket.x >= 940:
         rect_cot.x = 818
@@ -35,13 +47,14 @@ def pravo():
     if rect_cot.x >= rect_bucket.x:
         rect_cot.x -= 140
 
+
 def levo():
     global perevorot
     perevorot = False
     # перемещение предметов
-    rect_cot.x -= 20
-    rect_umbrella.x -= 20
-    rect_bucket.x -= 20
+    rect_cot.x -= 35
+    rect_umbrella.x -= 35
+    rect_bucket.x -= 35
     # граница
     if rect_bucket.x <= 0:
         rect_cot.x = 15
