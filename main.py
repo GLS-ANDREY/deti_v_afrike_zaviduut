@@ -1,8 +1,8 @@
 """нарисуйте кота"""
 
-import time,view,controller
+import time,view,controller,model
 
-import model
+
 
 while True:
     time.sleep(1/100)

@@ -6,11 +6,13 @@ umbrella = pygame.image.load("pics/umbrella.png")
 bucket = pygame.image.load("pics/bucket.png")
 tuchka = pygame.image.load("pics/cloud.png")
 kaplu = pygame.image.load("pics/water_drop.png")
+voda = pygame.image.load("pics/water.png")
 
 transform_tuchka = pygame.transform.scale(tuchka,[model.rect_tuchka.width, model.rect_tuchka.height])
 transform_umbrella = pygame.transform.scale(umbrella, [model.rect_umbrella.width, model.rect_umbrella.height])
 transform_bucket = pygame.transform.scale(bucket, [model.rect_bucket.width, model.rect_bucket.height])
 transform_kaplu = pygame.transform.scale(kaplu,[model.rect_kaplu.width, model.rect_kaplu.height])
+transform_voda = pygame.transform.scale(voda, [model.rect_voda.width, model.rect_voda.height])
 
 perevernutiy_kot = pygame.transform.flip(cat1,True,False)
 perevernutoe_bucket = pygame.transform.flip(transform_bucket,True,False)
@@ -20,12 +22,7 @@ def risovanie():
     display.fill([0, 0, 0])
     display.blit(transform_tuchka, model.rect_tuchka)
     display.blit(transform_kaplu, model.rect_kaplu)
-    #Ректы
-    if model.visibility == True:
-        pygame.draw.rect(display, [255, 0, 9], model.rect_cot, 3)
-        pygame.draw.rect(display, [64, 150, 193], model.rect_umbrella, 3)
-        pygame.draw.rect(display, [73, 156, 73], model.rect_bucket, 3)
-        pygame.draw.rect(display, [240, 167, 50], model.rect_tuchka, 3)
+
     #Фигурки лево
     if model.perevorot == False:
         display.blit(cat1, model.rect_cot)
@@ -36,4 +33,15 @@ def risovanie():
         display.blit(perevernutiy_kot, model.rect_cot)
         display.blit(perevernutoe_umbrella, model.rect_umbrella)
         display.blit(perevernutoe_bucket, model.rect_bucket)
+    #Вода
+    pygame.draw.rect(display,[52,144,193], model.rect_obman_voda)
+    display.blit(transform_voda, model.rect_voda)
+    #Ректы
+    if model.visibility == True:
+        pygame.draw.rect(display, [255, 0, 9], model.rect_cot, 3)
+        pygame.draw.rect(display, [64, 150, 193], model.rect_umbrella, 3)
+        pygame.draw.rect(display, [73, 156, 73], model.rect_bucket, 3)
+        pygame.draw.rect(display, [240, 167, 50], model.rect_tuchka, 3)
+        pygame.draw.rect(display, [255, 0, 127], model.rect_obman_voda, 3)
+        pygame.draw.rect(display, [255, 185, 173], model.rect_voda, 3)
     pygame.display.flip()
