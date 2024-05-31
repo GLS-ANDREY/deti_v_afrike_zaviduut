@@ -7,7 +7,9 @@ bucket = pygame.image.load("pics/bucket.png")
 tuchka = pygame.image.load("pics/cloud.png")
 kaplu = pygame.image.load("pics/water_drop.png")
 voda = pygame.image.load("pics/water.png")
+plot = pygame.image.load("pics/raft.png")
 
+transform_plot = pygame.transform.scale(plot,[model.rect_plot.width, model.rect_plot.height])
 transform_tuchka = pygame.transform.scale(tuchka,[model.rect_tuchka.width, model.rect_tuchka.height])
 transform_umbrella = pygame.transform.scale(umbrella, [model.rect_umbrella.width, model.rect_umbrella.height])
 transform_bucket = pygame.transform.scale(bucket, [model.rect_bucket.width, model.rect_bucket.height])
@@ -23,6 +25,7 @@ def risovanie():
     display.blit(transform_tuchka, model.rect_tuchka)
     display.blit(transform_kaplu, model.rect_kaplu)
 
+
     #Фигурки лево
     if model.perevorot == False:
         display.blit(cat1, model.rect_cot)
@@ -33,9 +36,12 @@ def risovanie():
         display.blit(perevernutiy_kot, model.rect_cot)
         display.blit(perevernutoe_umbrella, model.rect_umbrella)
         display.blit(perevernutoe_bucket, model.rect_bucket)
-    #Вода
+    #Вода обман
     pygame.draw.rect(display,[52,144,193], model.rect_obman_voda)
+    #Вода
     display.blit(transform_voda, model.rect_voda)
+    #Плот
+    display.blit(transform_plot, model.rect_plot)
     #Ректы
     if model.visibility == True:
         pygame.draw.rect(display, [255, 0, 9], model.rect_cot, 3)
@@ -44,4 +50,6 @@ def risovanie():
         pygame.draw.rect(display, [240, 167, 50], model.rect_tuchka, 3)
         pygame.draw.rect(display, [255, 0, 127], model.rect_obman_voda, 3)
         pygame.draw.rect(display, [255, 185, 173], model.rect_voda, 3)
+        pygame.draw.rect(display, [0, 255, 152], model.rect_plot, 3)
+        pygame.draw.rect(display, [0, 0, 255], model.rect_kaplu, 3)
     pygame.display.flip()

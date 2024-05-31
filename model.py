@@ -7,6 +7,12 @@ rect_tuchka = pygame.Rect(50, 50, 150, 120)
 rect_kaplu = pygame.Rect(rect_tuchka.x, rect_tuchka.y, 40, 40)
 rect_voda = pygame.Rect(0, 870, 1000, 30)
 rect_obman_voda = pygame.Rect(0, 900, 1000, 100)
+rect_plot = pygame.Rect(100, 5, 200, 70)
+def viravnivanie():
+    rect_voda.bottom = rect_obman_voda.top
+    rect_plot.bottom = rect_voda.top+60
+viravnivanie()
+
 visibility = False
 perevorot = False  # True - vpravo, False - vlevo
 speed_x_tuchka = 5
@@ -16,6 +22,7 @@ speed_y_kaplu = 7
 def zapusk():
     kaplu()
     tuchka()
+
 
 
 def kaplu():
