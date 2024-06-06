@@ -32,13 +32,14 @@ def risovanie():
     display.blit(transform_voda, model.rect_voda)
     #Плот
     display.blit(transform_plot, model.rect_plot)
-    model.rect_cot.bottom = model.rect_plot.top
+
 
     #Фигурки лево
     if model.perevorot == False:
         display.blit(cat1, model.rect_cot)
         display.blit(transform_umbrella, model.rect_umbrella)
         display.blit(transform_bucket, model.rect_bucket)
+
     #Фигурки право
     if model.perevorot == True:
         display.blit(perevernutiy_kot, model.rect_cot)
