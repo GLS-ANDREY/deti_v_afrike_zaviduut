@@ -1,6 +1,9 @@
 import pygame, model
 
+
 display = pygame.display.set_mode([1000, 1000])
+pygame.init()
+font = pygame.font.SysFont("arial", 27, True)
 cat1 = pygame.image.load("pics/cat1.png")
 umbrella = pygame.image.load("pics/umbrella.png")
 bucket = pygame.image.load("pics/bucket.png")
@@ -22,6 +25,10 @@ perevernutoe_umbrella = pygame.transform.flip(transform_umbrella, True, False)
 
 def risovanie():
     display.fill([0, 0, 0])
+    #Надпись
+    str_popalo_kapel = str(model.popalo_kapel)
+    kol_kapel = font.render(" Попало "+str_popalo_kapel+" капель", True, [254, 255, 243])
+    display.blit(kol_kapel,[0,0])
     #Тучка
     display.blit(transform_tuchka, model.rect_tuchka)
     #Капля
@@ -45,7 +52,6 @@ def risovanie():
         display.blit(perevernutiy_kot, model.rect_cot)
         display.blit(perevernutoe_umbrella, model.rect_umbrella)
         display.blit(perevernutoe_bucket, model.rect_bucket)
-
 
     #Ректы
     if model.visibility == True:

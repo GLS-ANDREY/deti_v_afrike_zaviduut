@@ -22,7 +22,6 @@ def allsobitiya():
         #Уровень воды
         if a.type == pygame.KEYDOWN and a.key == pygame.K_SPACE:
             model.rect_obman_voda.height = random.randint(100, 900)
-            model.rect_obman_voda.bottom = 1000
             model.viravnivanie()
 
         #Движение кота
