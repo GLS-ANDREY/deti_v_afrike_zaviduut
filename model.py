@@ -50,9 +50,11 @@ def up_vodi():
 
 def kapli_net():
     global popalo_kapel
-    if rect_kaplu.colliderect(rect_umbrella) or rect_kaplu.colliderect(rect_bucket):
+    if rect_kaplu.colliderect(rect_bucket):
         rect_kaplu.y = 10000000
         popalo_kapel += 1
+    elif rect_kaplu.colliderect(rect_umbrella):
+        rect_kaplu.y = 10000000
 
 def kaplu():
     rect_kaplu.centery += speed_y_kaplu
