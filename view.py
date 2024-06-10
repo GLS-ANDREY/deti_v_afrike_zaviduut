@@ -4,6 +4,8 @@ import pygame, model
 display = pygame.display.set_mode([1000, 1000])
 pygame.init()
 font = pygame.font.SysFont("arial", 27, True)
+russkiy_izik = " капель"
+
 cat1 = pygame.image.load("pics/cat1.png")
 umbrella = pygame.image.load("pics/umbrella.png")
 bucket = pygame.image.load("pics/bucket.png")
@@ -24,10 +26,20 @@ perevernutoe_bucket = pygame.transform.flip(transform_bucket,True,False)
 perevernutoe_umbrella = pygame.transform.flip(transform_umbrella, True, False)
 
 def risovanie():
+    global russkiy_izik
     display.fill([0, 0, 0])
     #Надпись
+    if model.popalo_kapel%10 in [0,5,6,7,8,9]:
+        russkiy_izik = " капель"
+    if model.popalo_kapel%10 in [2,3,4]:
+        russkiy_izik = " капли"
+    if model.popalo_kapel%10 == 1:
+        russkiy_izik = " капля"
+    if model.popalo_kapel >= 11 and model.popalo_kapel <= 19:
+        russkiy_izik = " капель"
+
     str_popalo_kapel = str(model.popalo_kapel)
-    kol_kapel = font.render(" Попало "+str_popalo_kapel+" капель", True, [254, 255, 243])
+    kol_kapel = font.render(" Попало "+str_popalo_kapel+ russkiy_izik, True, [254, 255, 243])
     display.blit(kol_kapel,[0,0])
     #Тучка
     display.blit(transform_tuchka, model.rect_tuchka)

@@ -30,6 +30,10 @@ def allsobitiya():
         if a.type == pygame.KEYDOWN and a.key == pygame.K_LEFT:
             model.levo()
 
+        #Читы - накрутка
+        if a.type == pygame.KEYDOWN and a.key == pygame.K_m:
+            model.popalo_kapel += 10
+
         #Показ ректов
         if a.type == pygame.KEYUP and a.key == pygame.K_q:
             model.visibility = not model.visibility
