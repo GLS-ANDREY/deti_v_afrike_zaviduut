@@ -15,6 +15,7 @@ def allsobitiya():
         if a.type == ct2:
             model.rect_kaplu.y = model.rect_tuchka.centery
             model.rect_kaplu.x = model.rect_tuchka.centerx
+            model.kapli_vilitela -= 1
         if a.type == ct1:
             rr = random.choice([-1,1])
             model.speed_x_tuchka = rr * model.speed_x_tuchka
@@ -32,7 +33,7 @@ def allsobitiya():
 
         #Читы - накрутка
         if a.type == pygame.KEYDOWN and a.key == pygame.K_m:
-            model.popalo_kapel += 10
+            model.popalo_kapel += 1
 
         #Показ ректов
         if a.type == pygame.KEYUP and a.key == pygame.K_q:

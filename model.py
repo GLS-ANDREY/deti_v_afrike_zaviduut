@@ -5,6 +5,7 @@ perevorot = False  # True - vpravo, False - vlevo
 speed_x_tuchka = 6
 speed_y_kaplu = 7
 popalo_kapel = 0
+kapli_vilitela = 5
 
 # Все ректы
 
