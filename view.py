@@ -4,6 +4,7 @@ display = pygame.display.set_mode([1000, 1000])
 pygame.init()
 font = pygame.font.SysFont("arial", 27, True)
 russkiy_izik = " капель"
+model.kapli_padaut()
 
 cat1 = pygame.image.load("pics/cat1.png")
 umbrella = pygame.image.load("pics/umbrella.png")
@@ -40,12 +41,19 @@ def okonchanie(a):
 def risovanie():
     global russkiy_izik
     display.fill([0, 0, 0])
+
     str_popalo_kapel = str(model.popalo_kapel)
     str_kapli_vilitela = str(model.kapli_vilitela)
+    str_urovenb = str(model.urovenb)
+
     kol_kapel = font.render(" Попало " + str_popalo_kapel + okonchanie(model.popalo_kapel), True, [254, 255, 243])
     do_uskorenie = font.render(str_kapli_vilitela + okonchanie(model.kapli_vilitela) + " до ускорения", True, [254, 255, 243])
+    do_plus_urovenb = font.render("уровень " + str_urovenb, True, [254, 255, 243])
+
     display.blit(kol_kapel, [0, 0])
     display.blit(do_uskorenie, [5, 30])
+    display.blit(do_plus_urovenb, [5, 60])
+
     # Тучка
     display.blit(transform_tuchka, model.rect_tuchka)
     # Капля

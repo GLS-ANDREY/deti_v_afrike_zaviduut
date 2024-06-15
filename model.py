@@ -2,10 +2,13 @@ import pygame
 
 visibility = False
 perevorot = False  # True - vpravo, False - vlevo
+
 speed_x_tuchka = 6
 speed_y_kaplu = 7
+
 popalo_kapel = 0
 kapli_vilitela = 5
+urovenb = 1
 
 # Все ректы
 
@@ -31,8 +34,6 @@ def viravnivanie():
     rect_cot.bottom = rect_plot.top + 40
     rect_bucket.y = rect_cot.y - 20
     rect_umbrella.y = rect_cot.y - 100
-
-
 viravnivanie()
 
 
@@ -48,14 +49,34 @@ def up_vodi():
         rect_obman_voda.height += 25
         viravnivanie()
 
+def kapli_padaut():
+    global kapli_vilitela,speed_x_tuchka,speed_y_kaplu, urovenb
+
+    rect_kaplu.y = rect_tuchka.centery
+    rect_kaplu.x = rect_tuchka.centerx
+
+    kapli_vilitela -= 1
+
+    if kapli_vilitela == 0:
+        kapli_vilitela = 5
+        speed_y_kaplu += 1
+        urovenb += 1
+
+        if speed_x_tuchka > 0:
+            speed_x_tuchka += 1
+        else:
+            speed_x_tuchka -= 1
+
 
 def kapli_net():
     global popalo_kapel
+
     if rect_kaplu.colliderect(rect_bucket):
-        rect_kaplu.y = 10000000
+        rect_kaplu.y = 2000000
         popalo_kapel += 1
+
     elif rect_kaplu.colliderect(rect_umbrella):
-        rect_kaplu.y = 10000000
+        rect_kaplu.y = 2000000
 
 def kaplu():
     rect_kaplu.centery += speed_y_kaplu
@@ -64,9 +85,11 @@ def kaplu():
 def tuchka():
     global speed_x_tuchka
     rect_tuchka.centerx += speed_x_tuchka
+
     if rect_tuchka.right > 1000:
         speed_x_tuchka = -speed_x_tuchka
         rect_tuchka.right = 1000
+
     if rect_tuchka.left <= 0:
         speed_x_tuchka = -speed_x_tuchka
         rect_tuchka.left = 0
@@ -81,12 +104,14 @@ def pravo():
     rect_umbrella.x += 35
     rect_bucket.x += 35
     rect_plot.x += 35
+
     # граница
     if rect_bucket.x >= 940:
         rect_cot.right = 985
         rect_umbrella.right = 900
         rect_bucket.right = 1000
         rect_plot.right = 1000
+
     # переворачивание предметов
     if rect_umbrella.x >= rect_bucket.x:
         rect_umbrella.x -= 250
