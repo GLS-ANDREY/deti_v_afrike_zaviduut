@@ -1,9 +1,7 @@
 import pygame, model, random
 
-ct1 = pygame.event.custom_type()
-ct2 = pygame.event.custom_type()
-pygame.time.set_timer(ct2, 3000)
-pygame.time.set_timer(ct1, 3000)
+timer_uskorenie_tuchki = pygame.event.custom_type()
+pygame.time.set_timer(timer_uskorenie_tuchki, 3000)
 pygame.key.set_repeat(100)
 
 
@@ -12,9 +10,9 @@ def allsobitiya():
     for a in s:
 
         #Таймеры
-        if a.type == ct2:
+        if a.type == model.timer_padenie_kapel:
             model.kapli_padaut()
-        if a.type == ct1:
+        if a.type == timer_uskorenie_tuchki:
             rr = random.choice([-1,1])
             model.speed_x_tuchka = rr * model.speed_x_tuchka
 
@@ -34,6 +32,8 @@ def allsobitiya():
             model.popalo_kapel += 1
         if a.type == pygame.KEYDOWN and a.key == pygame.K_n:
             model.urovenb += 1
+        if a.type == pygame.KEYDOWN and a.key == pygame.K_b:
+            model.kapli_vilitela -= 1
 
         #Показ ректов
         if a.type == pygame.KEYUP and a.key == pygame.K_q:

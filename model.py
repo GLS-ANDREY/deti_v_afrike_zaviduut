@@ -1,5 +1,12 @@
-import pygame
+import time
 
+import pygame
+pygame.init()
+
+mils_sec_timer = 3000
+timer_padenie_kapel = pygame.event.custom_type()
+pygame.time.set_timer(timer_padenie_kapel, mils_sec_timer)
+otladka = time.time()
 visibility = False
 perevorot = False  # True - vpravo, False - vlevo
 
@@ -43,6 +50,16 @@ def zapusk():
     up_vodi()
     kapli_net()
 
+def uskorenie_kapli():
+    global mils_sec_timer
+    if urovenb >= 4:
+        pygame.time.set_timer(timer_padenie_kapel, 0)
+        pygame.time.set_timer(timer_padenie_kapel, mils_sec_timer - 200)
+        mils_sec_timer = mils_sec_timer - 200
+
+    if mils_sec_timer == 2000:
+        mils_sec_timer += 200
+
 
 def up_vodi():
     if rect_kaplu.bottom > rect_obman_voda.top and 21 >= rect_kaplu.bottom - rect_obman_voda.top:
@@ -50,10 +67,12 @@ def up_vodi():
         viravnivanie()
 
 def kapli_padaut():
-    global kapli_vilitela,speed_x_tuchka,speed_y_kaplu, urovenb
+    global kapli_vilitela,speed_x_tuchka,speed_y_kaplu, urovenb,otladka
 
     rect_kaplu.y = rect_tuchka.centery
     rect_kaplu.x = rect_tuchka.centerx
+    print(time.time()-otladka)
+    otladka = time.time()
 
     kapli_vilitela -= 1
 
@@ -61,6 +80,7 @@ def kapli_padaut():
         kapli_vilitela = 5
         speed_y_kaplu += 1
         urovenb += 1
+        uskorenie_kapli()
 
         if speed_x_tuchka > 0:
             speed_x_tuchka += 1
