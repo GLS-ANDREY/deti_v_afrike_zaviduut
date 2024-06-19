@@ -1,7 +1,7 @@
 import pygame, model, random
 
-timer_uskorenie_tuchki = pygame.event.custom_type()
-pygame.time.set_timer(timer_uskorenie_tuchki, 3000)
+randomniy_type_timerov = pygame.event.custom_type()
+pygame.time.set_timer(randomniy_type_timerov, 3000)
 pygame.key.set_repeat(100)
 
 
@@ -12,7 +12,7 @@ def allsobitiya():
         #Таймеры
         if a.type == model.timer_padenie_kapel:
             model.kapli_padaut()
-        if a.type == timer_uskorenie_tuchki:
+        if a.type == randomniy_type_timerov:
             rr = random.choice([-1,1])
             model.speed_x_tuchka = rr * model.speed_x_tuchka
 
@@ -20,6 +20,13 @@ def allsobitiya():
         if a.type == pygame.KEYDOWN and a.key == pygame.K_SPACE:
             model.rect_obman_voda.height = random.randint(100, 900)
             model.viravnivanie()
+
+        #Появление солнца
+        if a.type == pygame.KEYDOWN and a.key == pygame.K_RETURN:
+            model.visibility_sun = True
+            pygame.time.set_timer(randomniy_type_timerov, 3000)
+        if a.type == randomniy_type_timerov:
+            model.visibility_sun = False
 
         #Движение кота
         if a.type == pygame.KEYDOWN and a.key == pygame.K_RIGHT:

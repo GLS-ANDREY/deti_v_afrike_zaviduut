@@ -5,8 +5,8 @@ pygame.init()
 
 mils_sec_timer = 3000
 timer_padenie_kapel = pygame.event.custom_type()
-pygame.time.set_timer(timer_padenie_kapel, mils_sec_timer)
-otladka = time.time()
+
+visibility_sun = False
 visibility = False
 perevorot = False  # True - vpravo, False - vlevo
 
@@ -25,9 +25,10 @@ rect_cot = pygame.Rect(rect_plot.x, rect_plot.y, 167, 126)
 rect_umbrella = pygame.Rect(185, 675, 125, 125)
 rect_bucket = pygame.Rect(80, 750, 60, 60)
 
-# Тучка и капля
+# Тучка и капля и солнце
 rect_tuchka = pygame.Rect(50, 50, 150, 120)
 rect_kaplu = pygame.Rect(rect_tuchka.x, rect_tuchka.y, 40, 40)
+rect_sun = pygame.Rect(850, 0, 150, 150)
 
 # Вода
 rect_voda = pygame.Rect(0, 870, 1000, 30)
@@ -71,9 +72,6 @@ def kapli_padaut():
 
     rect_kaplu.y = rect_tuchka.centery
     rect_kaplu.x = rect_tuchka.centerx
-    print(time.time()-otladka)
-    otladka = time.time()
-
     kapli_vilitela -= 1
 
     if kapli_vilitela == 0:
@@ -130,11 +128,10 @@ def pravo():
         rect_cot.right = 985
         rect_umbrella.right = 900
         rect_bucket.right = 1000
-        rect_plot.right = 1000
 
     # переворачивание предметов
     if rect_umbrella.x >= rect_bucket.x:
-        rect_umbrella.x -= 250
+        rect_umbrella.x -= 270
     if rect_cot.x >= rect_bucket.x:
         rect_cot.x -= 140
     rect_plot.x = rect_cot.x
@@ -145,21 +142,11 @@ def levo():
     perevorot = False
 
     # перемещение предметов
-    rect_cot.x -= 35
-    rect_umbrella.x -= 35
     rect_bucket.x -= 35
-    rect_plot.x -= 35
 
     # граница
     if rect_bucket.x <= 0:
-        rect_cot.x = 15
-        rect_umbrella.x = 100
         rect_bucket.x = 0
-        rect_plot.x = 0
-
-    # переворачивание предметов
-    if rect_umbrella.x <= rect_bucket.x:
-        rect_umbrella.x += 250
-    if rect_cot.x <= rect_bucket.x:
-        rect_cot.x += 140
+    rect_cot.x = rect_bucket.x + 15
+    rect_umbrella.x = rect_bucket.x + 100
     rect_plot.x = rect_cot.x
