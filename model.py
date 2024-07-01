@@ -1,10 +1,10 @@
-import time
-
 import pygame
+
 pygame.init()
 
 mils_sec_timer = 3000
 timer_padenie_kapel = pygame.event.custom_type()
+pygame.time.set_timer(timer_padenie_kapel, 3000)
 
 visibility_sun = False
 visibility = False
@@ -42,6 +42,8 @@ def viravnivanie():
     rect_cot.bottom = rect_plot.top + 40
     rect_bucket.y = rect_cot.y - 20
     rect_umbrella.y = rect_cot.y - 100
+
+
 viravnivanie()
 
 
@@ -50,6 +52,7 @@ def zapusk():
     tuchka()
     up_vodi()
     kapli_net()
+
 
 def uskorenie_kapli():
     global mils_sec_timer
@@ -67,8 +70,9 @@ def up_vodi():
         rect_obman_voda.height += 25
         viravnivanie()
 
+
 def kapli_padaut():
-    global kapli_vilitela,speed_x_tuchka,speed_y_kaplu, urovenb,otladka
+    global kapli_vilitela, speed_x_tuchka, speed_y_kaplu, urovenb, otladka
 
     rect_kaplu.y = rect_tuchka.centery
     rect_kaplu.x = rect_tuchka.centerx
@@ -96,6 +100,7 @@ def kapli_net():
     elif rect_kaplu.colliderect(rect_umbrella):
         rect_kaplu.y = 2000000
 
+
 def kaplu():
     rect_kaplu.centery += speed_y_kaplu
 
@@ -111,6 +116,21 @@ def tuchka():
     if rect_tuchka.left <= 0:
         speed_x_tuchka = -speed_x_tuchka
         rect_tuchka.left = 0
+
+
+def poivlenie_sun():
+    global speed_x_tuchka, speed_y_kaplu,rect_obman_voda
+    if speed_x_tuchka > 0:
+        speed_x_tuchka -= 1
+    else:
+        speed_x_tuchka += 1
+    if speed_x_tuchka == 0:
+        speed_x_tuchka = 1
+    speed_y_kaplu -= 1
+    pygame.time.set_timer(timer_padenie_kapel, 0)
+    pygame.time.set_timer(timer_padenie_kapel, mils_sec_timer + 200)
+    rect_obman_voda.height -= 50
+    viravnivanie()
 
 
 def pravo():

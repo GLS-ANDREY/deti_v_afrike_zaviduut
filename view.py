@@ -48,10 +48,12 @@ def risovanie():
     str_popalo_kapel = str(model.popalo_kapel)
     str_kapli_vilitela = str(model.kapli_vilitela)
     str_urovenb = str(model.urovenb)
+    str_speed_tuchki = str(model.speed_x_tuchka)
 
     kol_kapel = font.render(" Попало " + str_popalo_kapel + okonchanie(model.popalo_kapel), True, [254, 255, 243])
     do_uskorenie = font.render(str_kapli_vilitela + okonchanie(model.kapli_vilitela) + " до ускорения", True, [254, 255, 243])
     do_plus_urovenb = font.render("уровень " + str_urovenb, True, [254, 255, 243])
+    pict_speed_tuchki = font.render(str_speed_tuchki, True, [254, 255, 243])
 
     display.blit(kol_kapel, [0, 0])
     display.blit(do_uskorenie, [5, 30])
@@ -59,6 +61,7 @@ def risovanie():
 
     # Тучка
     display.blit(transform_tuchka, model.rect_tuchka)
+
     # Капля
     display.blit(transform_kaplu, model.rect_kaplu)
     # Вода обман
@@ -90,8 +93,10 @@ def risovanie():
         pygame.draw.rect(display, [64, 150, 193], model.rect_umbrella, 3)
         pygame.draw.rect(display, [73, 156, 73], model.rect_bucket, 3)
         pygame.draw.rect(display, [240, 167, 50], model.rect_tuchka, 3)
+        display.blit(pict_speed_tuchki, model.rect_tuchka)
         pygame.draw.rect(display, [255, 0, 127], model.rect_obman_voda, 3)
         pygame.draw.rect(display, [255, 185, 173], model.rect_voda, 3)
         pygame.draw.rect(display, [0, 255, 152], model.rect_plot, 3)
         pygame.draw.rect(display, [0, 0, 255], model.rect_kaplu, 3)
+        pygame.draw.rect(display, [255, 187, 25], model.rect_sun, 3)
     pygame.display.flip()

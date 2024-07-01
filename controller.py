@@ -23,6 +23,7 @@ def allsobitiya():
 
         #Появление солнца
         if a.type == pygame.KEYDOWN and a.key == pygame.K_RETURN:
+            model.poivlenie_sun()
             model.visibility_sun = True
             pygame.time.set_timer(randomniy_type_timerov, 3000)
         if a.type == randomniy_type_timerov:
