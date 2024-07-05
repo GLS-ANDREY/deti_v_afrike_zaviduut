@@ -1,20 +1,25 @@
 import pygame, model, random
+proverka_pokaza_sun = False
 
-randomniy_type_timerov = pygame.event.custom_type()
-pygame.time.set_timer(randomniy_type_timerov, 3000)
+timer_ubiranie_sun = pygame.event.custom_type()
+
+timer_poivlenie_sun = pygame.event.custom_type()
+pygame.time.set_timer(timer_poivlenie_sun, 3000)
+
+smena_napravlenie_tuchki = pygame.event.custom_type()
+pygame.time.set_timer(smena_napravlenie_tuchki, 3000)
 pygame.key.set_repeat(100)
 
 
 def allsobitiya():
+    global proverka_pokaza_sun
     s = pygame.event.get()
     for a in s:
-
         #Таймеры
         if a.type == model.timer_padenie_kapel:
             model.kapli_padaut()
-        if a.type == randomniy_type_timerov:
-            rr = random.choice([-1,1])
-            model.speed_x_tuchka = rr * model.speed_x_tuchka
+        if a.type == smena_napravlenie_tuchki:
+            model.napravlenie_tuchki()
 
         #Уровень воды
         if a.type == pygame.KEYDOWN and a.key == pygame.K_SPACE:
@@ -22,11 +27,14 @@ def allsobitiya():
             model.viravnivanie()
 
         #Появление солнца
-        if a.type == pygame.KEYDOWN and a.key == pygame.K_RETURN:
+        #TODO 1.Солнце нельзя было стартануть пока прошлое не пропало 2.Солнце моэно вызвать в самом начале игры 3. сделать солнце платным
+        if a.type == timer_poivlenie_sun:
+            proverka_pokaza_sun = True
+        if a.type == pygame.KEYDOWN and a.key == pygame.K_RETURN and proverka_pokaza_sun == True:
             model.poivlenie_sun()
             model.visibility_sun = True
-            pygame.time.set_timer(randomniy_type_timerov, 3000)
-        if a.type == randomniy_type_timerov:
+            pygame.time.set_timer(timer_ubiranie_sun, 3000)
+        if a.type == timer_ubiranie_sun:
             model.visibility_sun = False
 
         #Движение кота

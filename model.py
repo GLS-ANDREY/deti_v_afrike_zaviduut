@@ -1,10 +1,11 @@
-import pygame
+import pygame, random
 
 pygame.init()
 
 mils_sec_timer = 3000
 timer_padenie_kapel = pygame.event.custom_type()
 pygame.time.set_timer(timer_padenie_kapel, 3000)
+
 
 visibility_sun = False
 visibility = False
@@ -32,7 +33,7 @@ rect_sun = pygame.Rect(850, 0, 150, 150)
 
 # Вода
 rect_voda = pygame.Rect(0, 870, 1000, 30)
-rect_obman_voda = pygame.Rect(0, 900, 1000, 100)
+rect_obman_voda = pygame.Rect(0, 901, 1000, 100)
 
 
 def viravnivanie():
@@ -117,19 +118,31 @@ def tuchka():
         speed_x_tuchka = -speed_x_tuchka
         rect_tuchka.left = 0
 
+def napravlenie_tuchki():
+    global speed_x_tuchka
+    rr = random.choice([-1, 1])
+    speed_x_tuchka = rr * speed_x_tuchka
+
 
 def poivlenie_sun():
-    global speed_x_tuchka, speed_y_kaplu,rect_obman_voda
-    if speed_x_tuchka > 0:
+    global speed_x_tuchka, speed_y_kaplu,rect_obman_voda, mils_sec_timer
+    #Часть с скоростью тучки
+    if speed_x_tuchka > 1:
         speed_x_tuchka -= 1
-    else:
+    if speed_x_tuchka < -1:
         speed_x_tuchka += 1
-    if speed_x_tuchka == 0:
-        speed_x_tuchka = 1
+    #Часть с каплей скорость,частота падения и ограничение
     speed_y_kaplu -= 1
     pygame.time.set_timer(timer_padenie_kapel, 0)
-    pygame.time.set_timer(timer_padenie_kapel, mils_sec_timer + 200)
+    if mils_sec_timer < 4000:
+        mils_sec_timer += 200
+    pygame.time.set_timer(timer_padenie_kapel, mils_sec_timer)
+    if speed_y_kaplu < 4:
+        speed_y_kaplu = 4
+    #Часть с испарением воды и ограничением
     rect_obman_voda.height -= 50
+    if rect_obman_voda.height <= 100:
+        rect_obman_voda.height = 100
     viravnivanie()
 
 

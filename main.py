@@ -1,5 +1,4 @@
 """нарисуйте кота"""
-
 import time,view,controller,model
 
 
