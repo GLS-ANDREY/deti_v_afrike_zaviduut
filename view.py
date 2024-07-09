@@ -50,18 +50,19 @@ def risovanie():
     str_urovenb = str(model.urovenb)
     str_speed_tuchki = str(model.speed_x_tuchka)
 
+    enter = font.render("Enter - потратить 10 капель на солнце", True, [252, 255, 198])
     kol_kapel = font.render(" Попало " + str_popalo_kapel + okonchanie(model.popalo_kapel), True, [254, 255, 243])
     do_uskorenie = font.render(str_kapli_vilitela + okonchanie(model.kapli_vilitela) + " до ускорения", True, [254, 255, 243])
     do_plus_urovenb = font.render("уровень " + str_urovenb, True, [254, 255, 243])
     pict_speed_tuchki = font.render(str_speed_tuchki, True, [254, 255, 243])
 
+    display.blit(enter, [5, 90])
     display.blit(kol_kapel, [0, 0])
     display.blit(do_uskorenie, [5, 30])
     display.blit(do_plus_urovenb, [5, 60])
 
     # Тучка
     display.blit(transform_tuchka, model.rect_tuchka)
-
     # Капля
     display.blit(transform_kaplu, model.rect_kaplu)
     # Вода обман
